@@ -1,5 +1,4 @@
 import itertools
-from typing import Iterable
 
 from pandas import DataFrame
 
