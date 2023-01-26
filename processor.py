@@ -6,7 +6,7 @@ from pandas import DataFrame
 import sheet
 
 
-def process_dataframe(df: DataFrame):
+def convert_dataframe(df: DataFrame) -> DataFrame:
     compound_cnt = sheet.count_compounds(df)
 
     strain_col = df['Strain']
@@ -27,11 +27,4 @@ def process_dataframe(df: DataFrame):
         new_abundance_col = itertools.chain(new_abundance_col, [None], abundance_col)
 
     strain_compound_abundance = zip(new_strain_col, new_compound_no_col, new_abundance_col)
-    store_as_xls(strain_compound_abundance, 'Strains-R-out.xlsx', 'Output')
-
-
-def store_as_xls(zipped_cols: Iterable, xls_file_name: str, sheet_name: str):
-    df = DataFrame(zipped_cols, columns=['Strain', 'Compound', 'Abundance'])
-    df.to_excel(xls_file_name, sheet_name=sheet_name, index=False)
-    for strain, compound_no, abundance in zipped_cols:
-        print(strain, compound_no, abundance)
+    return DataFrame(strain_compound_abundance, columns=['Strain', 'Compound', 'Abundance'])
