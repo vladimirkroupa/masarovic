@@ -8,7 +8,7 @@ import sheet
 def convert_dataframe(df: DataFrame) -> DataFrame:
     compound_cnt = sheet.count_compounds(df)
 
-    strain_col = df['Strain']
+    strain_col = sheet.strains(df)
     strain_cnt = len(strain_col)
 
     # first compound block

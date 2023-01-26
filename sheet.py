@@ -2,7 +2,7 @@ from pandas import DataFrame
 
 
 def strains(df: DataFrame):
-    return df['Strains']
+    return df['Strain']
 
 
 def compound_abundance(no: int, df: DataFrame):
